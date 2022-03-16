@@ -1,12 +1,10 @@
 import json
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
-# import sched
+
 import time
 headers_login = {
     'User-Agent': "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
-
 }
 def get_soup(r):
     r.raise_for_status()  # 检验http状态码是否为200
@@ -124,7 +122,7 @@ if __name__ == '__main__':
     now = time.strftime('%Y-%m-%d',time.localtime(ts))
     end = time.strftime('%Y-%m-%d',time.localtime(end_ts))
     cookies_dict=read_coo()
-    timecode = bb_time(cookies_dict)
+
     if cookies_dict==0:
         auto_login()
     else:
@@ -142,5 +140,6 @@ if __name__ == '__main__':
                     daka.write("已更新信息"+"\n")
             else:
                 daka(token,cookies_dict)
+                timecode = bb_time(cookies_dict)
                 if timecode <= ts:
                     baobei(token, cookies_dict, now, end)
